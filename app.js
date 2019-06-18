@@ -32,7 +32,7 @@ const courses = [
 		id: 3,
 		name: 'course3'
 	}
-]
+];
 
 
 app.get('/', (req, res) => {
@@ -90,18 +90,8 @@ function validateCourse(course){
 	const schema = {name : Joi.string().min(3).required()}
 
 	return Joi.validate(course,schema);
-}
+};
 
 
 const port = process.env.PORT || 3000;
 app.listen(port,() => console.log(`Listening on port ${port}...`));
-
-
-
-
-
-
-
-
-
-
