@@ -1,36 +1,12 @@
-
-/**
-const http = require('http');
-
-
-const server = http.createServer((req,res) => {
-	if (req.url === '/') {
-		res.write('Hello World');
-		res.end();
-	}
-
-	if (req.url === '/api/courses') {
-		res.write(JSON.stringify([1,2,3]));
-		res.end();
-	}
-});
-
-
-
-server.listen(3000);
-
-console.log('Listening on port 3000...');
-**/
-
-
-
-const Joi = require('joi'); //Bir yapıda olması gereken şeyleri kontrol eden kütüphane
+const Joi = require('joi'); //Bir model yapısında olması gereken şeyleri kontrol eden kütüphane.
 const express = require('express');
 const app = express();
 
 
 app.use(express.json());
 
+
+//Static bir databases , id ve name field
 const courses = [
 	{
 		id:1,name:'course1'
@@ -43,14 +19,19 @@ const courses = [
 	}
 ]
 
+
+//Temel route
 app.get('/', (req,res) => {
 	res.send('Hello World!!');
 });
 
+
+//Static databasedeki verileri döndürür.
 app.get('/api/courses',(req,res) => {
 	res.send(courses);
 });
 
+//İstenilen id deki dersin verilerini döndürür.
 app.get('/api/courses/:id',(req,res) =>{
 	let course = courses.find(c => c.id == req.params.id); //Eğer istek gelinen urldeki course id , bizim arrayde var mı buluyor
 	if (!course) {  //404 Yoksa
@@ -60,7 +41,7 @@ app.get('/api/courses/:id',(req,res) =>{
 
 });
 
-
+//Yeni bir ders ekler,body de ders adı yollanmalıdır.Geri dönüş olarak eklenmiş veri dahil tüm verileri döndürür.
 app.post('/api/courses' , (req,res) => {
 	const { error } = validateCourse(req.body); //Yukarıdaki method un başka bir gösterimi daha kullanışlı
 
@@ -81,7 +62,7 @@ app.post('/api/courses' , (req,res) => {
 
 
 
-
+//İstenilen id deki veriyi günceller, bodyde name yollanmalıdır.Geri dönüş olarak güncellenmiş veri dahil tüm dersleri döndürür.
 app.put('/api/courses/:id',(req,res) => {
 	//Look up the course
 	//Eğer yoksa course , return 404
@@ -112,6 +93,7 @@ app.put('/api/courses/:id',(req,res) => {
 });
 
 
+//İstenilen id deki dersi siler , geri dönüş olarak silinmiş veri dahil tüm verileri döndürür.
 app.delete('/api/courses/:id',(req,res) => {
 	//Look up the course
 	//Not existing,return 404
@@ -133,11 +115,13 @@ app.delete('/api/courses/:id',(req,res) => {
 })
 
 
+
+//Bu fonksiyon gönderilen verinin standart bir kalıpta olmasını kontrol eder.
 function validateCourse(course){
 	//Validate yapıyoruz kontrol
 	//If invalid , return 400 - Bad request
 	const schema = {
-		name : Joi.string().min(3).required() //Gelicek olan course un ismi bu formatta olmalı
+		name : Joi.string().min(3).required() //Gelicek olan course un ismi bu formatta olmalı.En az 3 karaktere sahip olmalı.
 	}
 
 	return Joi.validate(course,schema);
@@ -147,7 +131,7 @@ function validateCourse(course){
 
 
 
-
+//Belirlenmiş bir enviroment port varsa oradan çalış yoksa 3000 portundan.
 const port = process.env.PORT || 3000;
 app.listen(port,() => console.log(`Listening on port ${port}...`));
 
