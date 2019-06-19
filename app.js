@@ -11,9 +11,9 @@
  * 
  */
 
-const express 	= require('express');
-const app 		= express();
-const db 		= require('./database.js');
+const express	= 	require('express');
+const app		= 	express();
+const db		= 	require('./database.js');
 
 
 app.use(express.json())
