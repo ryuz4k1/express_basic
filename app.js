@@ -11,14 +11,22 @@
  * 
  */
 
-const Joi 		= require('joi');
 const express 	= require('express');
 const app 		= express();
+const db 		= require('./database.js');
 
 
-app.use(express.json());
+app.use(express.json())
+
+app.get('/', (req, res) => {res.send('Hello World!!')})
+app.get('/courses', db.getCourses)
+app.get('/courses/:id', db.getCourseById)
+app.post('/courses', db.createCourse)
+app.put('/courses/:id', db.updateCourse)
+app.delete('/courses/:id', db.deleteCourse)
 
 
+/**
 const courses = [
 	{
 		id: 1,
@@ -33,11 +41,6 @@ const courses = [
 		name: 'course3'
 	}
 ];
-
-
-app.get('/', (req, res) => {
-	res.send('Hello World!!');
-});
 
 
 app.get('/api/courses',(req, res) => {
@@ -91,7 +94,7 @@ function validateCourse(course){
 
 	return Joi.validate(course,schema);
 };
-
+*/
 
 const port = process.env.PORT || 3000;
 app.listen(port,() => console.log(`Listening on port ${port}...`));
