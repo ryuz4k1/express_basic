@@ -61,7 +61,7 @@ Aynı konfigurasyonu kullanıyoruz çünkü aynı makinede işlem yapıyorum.
 
 
 Sequelize-CLI ile model oluşturuyoruz.
-sequelize model:create --name courses --attributes course_id:integer,course_name:string
+sequelize model:create --name Courses --attributes course_id:integer,course_name:string
 Bu komut ile model dosyasını modele , migrations dosyalarını migrations klasörüne yolluyor.
 
 
@@ -75,3 +75,22 @@ Yukarıdaki komutu çağırdıktan sonra, yeni bir .js dosyası içeren yeni bir
 
 touch controllers/course.controllers.js
 Bu komut ile controller dosyamıza course.controller dosyasını oluşturuyoruz.
+
+
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const courses = sequelize.define('courses', {
+    course_id :  {
+      type : DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    course_name : {
+      type : DataTypes.STRING
+    }
+  }, {});
+  courses.associate = function(models) {
+    // associations can be defined here
+  };
+  return courses;
+};
