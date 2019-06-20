@@ -19,7 +19,7 @@ npm install --save pg pg-hstore
 
 
 touch .sequelizerc
-.sequelizerc in içine yaziyoruz.Bu dosya bize sequelize başlarken bunları yaratsın.Initialization yapıyor.
+.sequelizerc in içine yaziyoruz.Bu dosya bize sequelize başlarken bunları yaratsın.
 const path = require('path');
 
 module.exports = {
@@ -30,8 +30,8 @@ module.exports = {
 };
 
 sequelize init
+Initialization
 That command will create `config/config.json`, `models/index.js`, `migrations` and `seeders` directories and files.
-
 
 
 {
@@ -65,32 +65,11 @@ sequelize model:create --name Courses --attributes course_id:integer,course_name
 Bu komut ile model dosyasını modele , migrations dosyalarını migrations klasörüne yolluyor.
 
 
-
 sequelize db:migrate
 This command to generate the table to the database.
 Bir geçiş komut dosyası, veritabanımızın yeni bir sürümünü veya durumunu temsil eder. 
 Yukarıdaki komutu çağırdıktan sonra, yeni bir .js dosyası içeren yeni bir dizin oluşturulur.
 
 
-
 touch controllers/course.controllers.js
 Bu komut ile controller dosyamıza course.controller dosyasını oluşturuyoruz.
-
-
-'use strict';
-module.exports = (sequelize, DataTypes) => {
-  const courses = sequelize.define('courses', {
-    course_id :  {
-      type : DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
-    },
-    course_name : {
-      type : DataTypes.STRING
-    }
-  }, {});
-  courses.associate = function(models) {
-    // associations can be defined here
-  };
-  return courses;
-};
