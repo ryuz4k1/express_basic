@@ -1,0 +1,64 @@
+Create an Express.js app using this command.
+express express_basic --view=html //Hangi tipte olmasını istersem ona göre extation koyuyorum parametre olarak.
+
+npm install --save sequelize
+npm install --save pg pg-hstore
+
+
+touch .sequelizerc
+.sequelizerc in içine yaziyoruz.Bu dosya bize sequelize başlarken bunları yaratsın.Initialization yapıyor.
+const path = require('path');
+
+module.exports = {
+  "config": path.resolve('./config', 'config.json'),
+  "models-path": path.resolve('./models'),
+  "seeders-path": path.resolve('./seeders'),
+  "migrations-path": path.resolve('./migrations')
+};
+
+sequelize init
+That command will create `config/config.json`, `models/index.js`, `migrations` and `seeders` directories and files.
+
+
+
+{
+  "development": {
+    "username": "devuser",
+    "password": "roller17",
+    "database": "express_basic",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "devuser",
+    "password": "roller17",
+    "database": "express_basic",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "devuser",
+    "password": "roller17",
+    "database": "express_basic",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
+Aynı konfigurasyonu kullanıyoruz çünkü aynı makinede işlem yapıyorum.
+
+
+Sequelize-CLI ile model oluşturuyoruz.
+sequelize model:create --name courses --attributes course_id:integer,course_name:string
+Bu komut ile model dosyasını modele , migrations dosyalarını migrations klasörüne yolluyor.
+
+
+
+sequelize db:migrate
+This command to generate the table to the database.
+Bir geçiş komut dosyası, veritabanımızın yeni bir sürümünü veya durumunu temsil eder. 
+Yukarıdaki komutu çağırdıktan sonra, yeni bir .js dosyası içeren yeni bir dizin oluşturulur.
+
+
+
+touch controllers/course.controllers.js
+Bu komut ile controller dosyamıza course.controller dosyasını oluşturuyoruz.

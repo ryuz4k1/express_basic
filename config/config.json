@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "devuser",
+    "password": "roller17",
+    "database": "express_basic",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "devuser",
+    "password": "roller17",
+    "database": "express_basic",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "devuser",
+    "password": "roller17",
+    "database": "express_basic",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
