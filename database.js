@@ -1,5 +1,5 @@
 const Pool      =   require('pg').Pool
-const Joi 		=   require('joi')
+const Joi       =   require('joi')
 
 
 const pool = new Pool({
@@ -9,6 +9,7 @@ const pool = new Pool({
     password: 'roller17',
     port: 5432,
 })
+
 
 
 const getCourses = (req, res) => {

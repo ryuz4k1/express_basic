@@ -35,7 +35,8 @@ const createCourse = (req, res) => {
   .create({
     course_name: req.body.course_name,
   })
-  .then((course) => res.status(201).send({"message":`Course created with course_name: ${req.body.course_name}`,"data":course}))
+  .then((course) => res.status(201)
+  .send({"message":`Course created with course_name: ${req.body.course_name}`,"data":course}))
   .catch((error) => res.status(400).send(error));
 }
 

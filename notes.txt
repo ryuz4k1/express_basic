@@ -1,3 +1,16 @@
+/**
+ * USAGE 
+ * 
+ * curl -X GET http://localhost:3000/api/courses --> Tüm derslerin verilerini döndürür.
+ * curl -X GET http://localhost:3000/api/courses/1 --> Sadece 1 numaralı id sahip dersin verilerini döndürür.
+ * curl -H "Content-Type: application/json" -X POST -d '{"name":"newCourse"}'  http://localhost:3000/api/courses --> Yeni bir ders ekler.
+ * curl -H "Content-Type: application/json" -X PUT -d '{"name":"updatedName"}'  http://localhost:3000/api/courses/1 -->1 Numaralı id deki dersin adını günceller.
+ * curl -H "Content-Type: application/json" -X DELETE  http://localhost:3000/api/courses/1 --> 1 numaralı id deki dersi siler.
+ * 
+ * 
+ */
+
+
 Create an Express.js app using this command.
 express express_basic --view=html //Hangi tipte olmasını istersem ona göre extation koyuyorum parametre olarak.
 
